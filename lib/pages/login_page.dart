@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test/components/button.dart';
 import 'package:test/components/text_field.dart';
@@ -14,6 +15,14 @@ class _LoginPageState extends State<LoginPage> {
   //text editing controllers
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+
+  //signin method
+  void signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailTextController.text,
+      password: passwordTextController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 //sign in button
                 MyButton(
-                  onTap: () {},
+                  onTap: signIn,
                   text: 'Sign In',
                 ),
 
