@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/pages/login_page.dart';
+import 'package:test/auth/login_or_register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins'),
-      home: LoginPage(),
+      home: LoginOrRegister(),
     );
   }
 }

@@ -15,7 +15,9 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: TextStyle(color: Colors.white70),
+      style: TextStyle(
+        color: Colors.white70,
+      ),
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(
