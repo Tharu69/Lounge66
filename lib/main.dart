@@ -19,7 +19,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Poppins'),
+      theme: ThemeData(
+        fontFamily: 'Poppins',
+        appBarTheme: AppBarTheme(
+          color: Colors.black87,
+        ),
+      ),
       home: AuthPage(),
     );
   }
