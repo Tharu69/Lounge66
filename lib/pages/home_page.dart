@@ -17,10 +17,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black87,
       appBar: AppBar(
-        title: Text(
-          "The Wall",
-          style: TextStyle(fontFamily: 'Pacifico'),
+        title: Center(
+          child: Text(
+            "lounge66",
+            style: TextStyle(fontFamily: 'Pacifico'),
+          ),
         ),
         actions: [
           //sign out button

@@ -29,7 +29,13 @@ class _LoginPageState extends State<LoginPage> {
         email: emailTextController.text,
         password: passwordTextController.text,
       );
+
+      //auto hide loading circle
+      if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
+      //hide loading circle
+      Navigator.pop(context);
+      //display error message
       displayMessage(e.code);
     }
   }
@@ -57,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 //logo
                 Image.asset(
-                  '../../assets/logo.png',
+                  'assets/logo.png',
                 ),
 
                 const SizedBox(height: 25),

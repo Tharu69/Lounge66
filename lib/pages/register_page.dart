@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/button.dart';
@@ -17,6 +18,47 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordTextController = TextEditingController();
   final confirmPasswordTextController = TextEditingController();
 
+  //sign user up
+  void signUp() async {
+    //show loading circle
+    showDialog(
+      context: context,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
+    //make sure passwords match
+    if (passwordTextController.text != confirmPasswordTextController.text) {
+      //loading circle
+      Navigator.pop(context);
+      //show error to user
+      displayMessage("The two passwords do not match!");
+      return;
+    }
+
+    // create user
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailTextController.text,
+          password: passwordTextController.text);
+      //hide loading circle
+      if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      //display error message
+      Navigator.pop(context);
+      //show error to user
+      displayMessage(e.code);
+    }
+  }
+
+  //display invalid signup message
+  void displayMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 //logo
                 Image.asset(
-                  '../../assets/logo.png',
+                  'assets/logo.png',
                 ),
 
                 const SizedBox(height: 25),
@@ -73,9 +115,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 const SizedBox(height: 20),
 
-                //sign in button
+                //sign up button
                 MyButton(
-                  onTap: () {},
+                  onTap: signUp,
                   text: 'Sign Up',
                 ),
 
